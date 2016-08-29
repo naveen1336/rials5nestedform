@@ -6,7 +6,7 @@
 		<%= f.label :name  %>
 		<%= f.text_field :name  %>
 	</div>
-	<%= f.fields_for  @use.licenses.build do |build| %>
+	<%= f.fields_for  @use.licenses.new do |build| %>
 		<div>
 			<%= build.label :number %>
 			<%= build.text_field :number %>

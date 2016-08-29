@@ -14,12 +14,16 @@ class UsersController < ApplicationController
   def create
   	@user = User.create(params[:name])
   	# if @user.save
-  		render plain: "naveen created#{@user}"
+  		#render plain: "naveen created#{@user}"
       # p "    ============#{params[:user].inspect}==================="
-      license = @user.licenses.create(number: params[:user][:license][:number] ,state: params[:user][:license][:state] )
-    # else
-    # 	render plain: "not created"
-    # end
+      @license = @user.licenses.create(number: params[:user][:license][:number], state: params[:user][:license][:state])
+ 
+      if @license.errors.present?
+        @user.destroy
+     	render plain: "not created"
+     else
+     render plain: "successfully created licensess"
+     end
   end
 private
  
